@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AuthServer.Core.Model
+namespace AuthServer.Core.Dtos
 {
-    public class Product
+    public class ProductDto
     {
         public int ID { get; set; }
         public string Name { get; set; }
         public Decimal Price { get; set; }
-        public int Stock { get; set; }
+
         public string UserID { get; set; }
     }
 }

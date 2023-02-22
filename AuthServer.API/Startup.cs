@@ -29,7 +29,7 @@ namespace AuthServer.API
         {
 
             services.Configure<CustomTokenOption>(Configuration.GetSection("TokenOption"));
-            services.Configure<Client>(Configuration.GetSection("Clients"));
+            services.Configure<List<Client>>(Configuration.GetSection("Clients"));
 
 
             services.AddControllers();

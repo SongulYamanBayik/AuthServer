@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using SharedLibrary.Configurations;
+using SharedLibrary.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +28,11 @@ namespace MiniApp2.API
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.Configure<CustomTokenOption>(Configuration.GetSection("TokenOption"));
+            var tokenOptions = Configuration.GetSection("TokenOption").Get<CustomTokenOption>();
+
+            services.AddCustomTokenAuth(tokenOptions);
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -45,6 +52,7 @@ namespace MiniApp2.API
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
